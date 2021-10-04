@@ -4,15 +4,15 @@
       <form v-if="openForm">
          <div>
             <p>Введите количество строк m:</p>
-            <input type="text">
+            <input v-model="m_value" type="text">
          </div>
          <div>
             <p>Введите количество столбцов n:</p>
-            <input type="text">
+            <input v-model="n_value" type="text">
          </div>
          <div>
-            <router-link to="\CalculateMatrix.vue">
-               <button>Сформировать систему</button>
+            <router-link to="/calculatematrix">
+               <button type="submit" @click="Initializate()">Сформировать систему</button>
             </router-link>
          </div>
       </form> 
@@ -20,13 +20,20 @@
 </template>
 
 <script>
-// @ is an alias to /src
 
 export default {
   name: 'Home',
   data() {
      return {
-         openForm: false
+         openForm: false,
+         m_value: '',
+         n_value: ''
+     }
+  },
+  methods: {
+      Initializate() {
+         localStorage.m = this.m_value;
+         localStorage.n = this.n_value;
      }
   }
 }
