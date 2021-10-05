@@ -15,24 +15,26 @@
             </div>
          </form>
       </div>
-      <button @click="func()">Рассчитать</button>
-      <p v-if="openResult">Ответ:</p>
+      <button v-if="!openResult" @click="func()">Рассчитать</button>
+      <p v-if="openResult" style="margin-top: 5vw">Ответ:</p>
       <div v-if="openResult">
-         <p>A+ =</p>
+         <p>A</p>
+         <p style="margin-left: 0">+<br><br></p>
+         <p style="margin-left: 0">=</p>
          <form>
             <div v-for="(option, index1) in MatrixAObr" :key="index1">
-               <label v-for="(option, index2) in MatrixAObr[index1]" :key="index2">{{ option }}</label>
+               <input type="text" readonly v-for="(option, index2) in MatrixAObr[index1]" :key="index2" :placeholder="option" maxlength="10">
             </div>
          </form>
          <p>X =</p>
          <form>
             <div v-for="(option, index1) in MatrixX" :key="index1">
-               <label v-for="(option, index2) in MatrixX[index1]" :key="index2">{{ option }}</label>
+               <input type="text" readonly v-for="(option, index2) in MatrixX[index1]" :key="index2" :placeholder="option" maxlength="10">
             </div>
          </form>
       </div>
       <div v-if="openResult">
-         <p>Невязка: {{ resultMNK }}</p>
+         <p style="margin-top: 3vw">Невязка: {{ resultMNK }}</p>
       </div>
    </div>
 </template>
@@ -41,7 +43,7 @@
 import {MethodFadeeva, multiply, MNK} from '../test.js'
 
 export default {
-   name: 'CalculateMatrix',
+   name: 'FormCalculate',
    data() {
       return {
          n: localStorage.n,
@@ -98,7 +100,7 @@ export default {
          justify-content: center;
 
          p {
-            margin: vw(70) vw(10) auto vw(10);
+            margin: auto vw(10) auto vw(40);
          }
 
          form {
@@ -108,7 +110,6 @@ export default {
                input {
                   font-size: vw(18);
                   border: 1px solid black;
-                  width: vw(100);
                   align-items: center;
                   text-align: center;
                   padding: vw(10);
@@ -118,10 +119,8 @@ export default {
                   outline-width: 0;
                }
 
-               label {
-                  font-size: vw(18);
-                  border: 1px solid black;
-                  min-width: vw(100);
+               input::-webkit-input-placeholder { 
+                  color: black;
                }
             }
          }
