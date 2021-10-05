@@ -4,7 +4,7 @@
       <div>
          <p>A = </p>
          <form>
-            <div v-for="(options, indexM) in MatrixA" :key="indexM">
+            <div v-for="(option, indexM) in MatrixA" :key="indexM">
                <input v-model="MatrixA[indexM][indexN]" v-for="(option, indexN) in MatrixA[indexM]" :key="indexN" type="text">
             </div>
          </form>
@@ -16,11 +16,26 @@
          </form>
       </div>
       <button @click="func()">Рассчитать</button>
+      <p v-if="openResult">Ответ:</p>
+      <div v-if="openResult">
+         <p>A+ =</p>
+         <form>
+            <div v-for="(option, index1) in MatrixAObr" :key="index1">
+               <label v-for="(option, index2) in MatrixAObr[index1]" :key="index2">{{ option }}</label>
+            </div>
+         </form>
+         <p>X =</p>
+         <form>
+            <div v-for="(option, index1) in MatrixX" :key="index1">
+               <label v-for="(option, index2) in MatrixX[index1]" :key="index2">{{ option }}</label>
+            </div>
+         </form>
+      </div>
    </div>
 </template>
 
 <script>
-import MethodFadeeva from '../test.js'
+import {MethodFadeeva, multiply} from '../test.js'
 
 export default {
    name: 'CalculateMatrix',
@@ -29,13 +44,18 @@ export default {
          n: localStorage.n,
          m: localStorage.m,
          MatrixA: [],
-         MatrixB: []
+         MatrixB: [],
+         MatrixAObr: [],
+         MatrixX: [],
+         openResult: false
       }
    },
    methods: {
       func() {
-         console.log(this.MatrixA)
-         console.log(this.MatrixB)
+         this.MatrixAObr = MethodFadeeva(this.MatrixA)
+
+         this.MatrixX = multiply(this.MatrixAObr, this.MatrixB)
+         this.openResult = !this.openResult
       }
    },
    created(){
@@ -81,7 +101,9 @@ export default {
                display: flex;
 
                input {
+                  font-size: vw(18);
                   border: 1px solid black;
+                  width: vw(100);
                   align-items: center;
                   text-align: center;
                   padding: vw(10);
@@ -89,6 +111,12 @@ export default {
                input:focus {
                   box-shadow: none;
                   outline-width: 0;
+               }
+
+               label {
+                  font-size: vw(18);
+                  border: 1px solid black;
+                  min-width: vw(100);
                }
             }
          }
@@ -101,7 +129,7 @@ export default {
          background: transparent;
          padding: vw(10) vw(20);
          border: 1px solid black;
-         margin-top: vw(50);
+         margin: vw(50) auto vw(80) auto;
       }
 
       button:hover {

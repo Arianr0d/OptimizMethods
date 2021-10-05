@@ -1,6 +1,5 @@
-export default function() {
-   async function MethodFadeeva() {
-      let a = [[1,4,7,0,2,3],[4,4,7,0,2,3],[7,0,7,0,2,3],[0,0,0,0,2,3]];
+   function MethodFadeeva(matrixA) {
+      let a = matrixA;
       let aT = transpose(a);
       let aTa = multiply(aT, a);
       let I = diag(row(aTa));
@@ -11,9 +10,6 @@ export default function() {
       while (Math.abs(mu) > Math.exp(-20)){
           let dF = sum(multi(I,mu),multiply(aTa,F),-1);
           let dmu = tr(multiply(aTa,dF))/i;
-          console.log(i);
-          console.log(dF);
-          console.log(dmu);
           if (Math.abs(dmu) < Math.exp(-20)){
               _mu = mu;
               _F = F;
@@ -23,7 +19,7 @@ export default function() {
           i++;
       }
       let Aobr = multi(multiply(_F,aT),1/_mu);
-      console.log(Aobr);
+      return Aobr;
   }
 
   // matrix helpers
@@ -120,4 +116,5 @@ export default function() {
       });
       return newArray;
   }
-}
+
+export {MethodFadeeva, multiply}

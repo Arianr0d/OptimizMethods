@@ -65,7 +65,7 @@ export default {
          }
 
          input {
-            width: vw(100);
+            width: vw(40);
             border-bottom: 1px solid #7B9299;
             padding: vw(2) vw(10);
          }
