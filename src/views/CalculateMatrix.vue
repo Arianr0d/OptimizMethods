@@ -4,14 +4,14 @@
       <div>
          <p>A = </p>
          <form>
-            <div v-for="(option, indexM) in funcRange(m)" :key="indexM">
-               <input :v-model="Matrix[indexM][indexN]" v-for="(option, indexN) in funcRange(n)" :key="indexN" type="text">
+            <div v-for="(options, indexM) in MatrixA" :key="indexM">
+               <input v-model="MatrixA[indexM][indexN]" v-for="(option, indexN) in MatrixA[indexM]" :key="indexN" type="text">
             </div>
          </form>
          <p>B =</p>
          <form>
-            <div v-for="(option, indexm) in funcRange(m)" :key="indexm">
-               <input v-for="(option, index1) in funcRange(1)" :key="index1" type="text">
+            <div v-for="(option, indexm) in MatrixB" :key="indexm">
+               <input v-model="MatrixB[indexm][index1]" v-for="(option, index1) in MatrixB[indexm]" :key="index1" type="text">
             </div>
          </form>
       </div>
@@ -28,29 +28,30 @@ export default {
       return {
          n: localStorage.n,
          m: localStorage.m,
-         Matrix: []
+         MatrixA: [],
+         MatrixB: []
       }
    },
    methods: {
-      funcRange(value) {
-         var mass = []
-         for (let i = 0; i < value; i++) {
-            mass.push(i)
-         }
-         return mass
-      },
       func() {
-         console.log(Matrix)
+         console.log(this.MatrixA)
+         console.log(this.MatrixB)
       }
    },
-   created() {
-      this.Matrix = new Array(localStorage.m)
-         for (let i = 0; i < localStorage.m; i++) {
-            for(let j = 0; j < localStorage.n; j++) {
-               this.Matrix[i] = new Array(localStorage.n)
+   created(){
+      this.MatrixA, this.MatrixB = []
+         for(let i = 0; i < this.m; i++) {
+            this.MatrixA[i] = []
+            for(let j = 0; j < this.n; j++) {
+               this.MatrixA[i].push(null)
             }
          }
-   }
+
+         for(let i = 0; i < this.m; i++) {
+            this.MatrixB[i] = []
+            this.MatrixB[i].push(null)
+         }
+      }
 }
 </script>
 
