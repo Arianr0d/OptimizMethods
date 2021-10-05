@@ -31,11 +31,14 @@
             </div>
          </form>
       </div>
+      <div v-if="openResult">
+         <p>Невязка: {{ resultMNK }}</p>
+      </div>
    </div>
 </template>
 
 <script>
-import {MethodFadeeva, multiply} from '../test.js'
+import {MethodFadeeva, multiply, MNK} from '../test.js'
 
 export default {
    name: 'CalculateMatrix',
@@ -47,14 +50,16 @@ export default {
          MatrixB: [],
          MatrixAObr: [],
          MatrixX: [],
+         resultMNK: 0,
          openResult: false
       }
    },
    methods: {
       func() {
          this.MatrixAObr = MethodFadeeva(this.MatrixA)
-
          this.MatrixX = multiply(this.MatrixAObr, this.MatrixB)
+         this.resultMNK = MNK(this.MatrixB, multiply(this.MatrixA, this.MatrixX))
+
          this.openResult = !this.openResult
       }
    },

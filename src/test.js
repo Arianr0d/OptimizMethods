@@ -23,6 +23,10 @@
   }
 
   // matrix helpers
+  function MNK(B, A){
+      return multiply(transpose(sum(A,B,-1)),sum(A,B,-1))[0][0];
+  }
+
   function row(matrix){
       return matrix.length;
   }
@@ -117,4 +121,4 @@
       return newArray;
   }
 
-export {MethodFadeeva, multiply}
+export {MethodFadeeva, multiply, MNK}
