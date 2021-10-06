@@ -10,10 +10,8 @@
       while (Math.abs(mu) > Math.exp(-20)){
           let dF = sum(multi(I,mu),multiply(aTa,F),-1);
           let dmu = tr(multiply(aTa,dF))/i;
-          if (Math.abs(dmu) < Math.exp(-20)){
-              _mu = mu;
-              _F = F;
-          }
+         _mu = mu;
+         _F = F;
           mu = dmu;
           F = dF;
           i++;

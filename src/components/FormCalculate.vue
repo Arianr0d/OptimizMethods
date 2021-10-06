@@ -23,13 +23,13 @@
          <p style="margin-left: 0">=</p>
          <form>
             <div v-for="(option, index1) in MatrixAObr" :key="index1">
-               <input type="text" readonly v-for="(option, index2) in MatrixAObr[index1]" :key="index2" :placeholder="option" maxlength="10">
+               <input type="text" readonly v-for="(option, index2) in MatrixAObr[index1]" :key="index2" :placeholder="option">
             </div>
          </form>
          <p>X =</p>
          <form>
             <div v-for="(option, index1) in MatrixX" :key="index1">
-               <input type="text" readonly v-for="(option, index2) in MatrixX[index1]" :key="index2" :placeholder="option" maxlength="10">
+               <input type="text" readonly v-for="(option, index2) in MatrixX[index1]" :key="index2" :placeholder="option">
             </div>
          </form>
       </div>
