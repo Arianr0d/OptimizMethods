@@ -104,13 +104,13 @@
       return(ans);
   }
 
-  function diag2(n) {
+  /*function diag2(n) {
       return (new Array(n).fill(0)).map(
           function (a, i){
               return (new Array(n)).fill(0).map(function (b,j){return (i==j)?1:0;});
           }
       )
-  }
+  }*/
 
   function mtrcopy(matrix){
       let newArray = matrix.map(function(arr) {

@@ -5,13 +5,13 @@
          <p>A = </p>
          <form>
             <div v-for="(option, indexM) in MatrixA" :key="indexM">
-               <input v-model="MatrixA[indexM][indexN]" v-for="(option, indexN) in MatrixA[indexM]" :key="indexN" type="text">
+               <input v-model.number="MatrixA[indexM][indexN]" v-for="(option, indexN) in MatrixA[indexM]" :key="indexN" type="text">
             </div>
          </form>
          <p>B =</p>
          <form>
             <div v-for="(option, indexm) in MatrixB" :key="indexm">
-               <input v-model="MatrixB[indexm][index1]" v-for="(option, index1) in MatrixB[indexm]" :key="index1" type="text">
+               <input v-model.number="MatrixB[indexm][index1]" v-for="(option, index1) in MatrixB[indexm]" :key="index1" type="text">
             </div>
          </form>
       </div>
