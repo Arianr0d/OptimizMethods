@@ -3,7 +3,7 @@
       <p>СЛАУ</p>
       <div>
          <p>A = </p>
-         <form>
+         <form class="scroll_x">
             <div v-for="(option, indexM) in MatrixA" :key="indexM">
                <input v-model.number="MatrixA[indexM][indexN]" v-for="(option, indexN) in MatrixA[indexM]" :key="indexN" type="text">
             </div>
@@ -97,13 +97,14 @@ export default {
       div {
          display: flex;
          flex-direction: row;
-         justify-content: center;
+         justify-content: stretch;
 
          p {
             margin: auto vw(10) auto vw(40);
          }
 
          form {
+
             div {
                display: flex;
 
@@ -141,5 +142,10 @@ export default {
          color: white;
          border-color: #7B9299;
       }
+   }
+
+   .scroll_x {
+      overflow-x: scroll;
+      width: vw(1383);
    }
 </style>
