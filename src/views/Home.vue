@@ -5,14 +5,14 @@
       <form v-if="openForm">
          <div>
             <p>Введите количество строк m:</p>
-            <input v-model="m_value" type="text">
+            <input v-model.number="m_value" type="text">
          </div>
          <div>
             <p>Введите количество столбцов n:</p>
-            <input v-model="n_value" type="text">
+            <input v-model.number="n_value" type="text">
          </div>
          <div>
-            <button type="submit" @click="Initializate()">Сформировать систему</button>
+            <button @click="Initializate">Сформировать систему</button>
          </div>
       </form> 
      </div>
@@ -40,10 +40,17 @@ export default {
   },
   methods: {
       Initializate() {
-         localStorage.m = this.m_value
-         localStorage.n = this.n_value
+         if(/(\d)+/.test(this.m_value) & (/(\d)+/.test(this.n_value))) {
+            localStorage.m = this.m_value
+            localStorage.n = this.n_value
 
-         this.openCalculate = !this.openCalculate
+            this.openCalculate = !this.openCalculate
+         } 
+         else {
+            alert('Данные введены не верно!')
+            this.openForm = true
+         }
+
      }
   }
 }
